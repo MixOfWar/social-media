@@ -14,21 +14,16 @@ import dotenv from "dotenv";
 import multer from "multer";
 import cors from "cors";
 import path from "path";
-
-/* For single use of uploading dummy data */
 import { users, posts } from "./data/index.js";
 import User from "./models/User.js";
 import Post from "./models/Post.js";
 
-/** Configuration */
+/* Configuration */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-/** Enable dotenv for use*/
 dotenv.config();
-
-/** Establishing application use of technologies */
 const app = express();
+
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -36,22 +31,20 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
-/** Sets directory of where we keep our assets - this will be stored locally as this is not a enterprise production, for real time production this would be stored in a proper cloud storage such as S3 */
-app.use("/assets", express.static(path.join(__dirname, 'public/asseets')));
-
-/** File Storage Configurations for Multer */
+/* File Storage */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/assets");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
-  }
+  },
 });
 const upload = multer({ storage });
 
-/* Routes With Files */
+/* Routes with files */
 app.post("/auth/register", upload.single("picture"), register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
@@ -60,18 +53,18 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-
-/** Mongoose Setup 
- * * For MONGO_URL - do not end this line of code with a semicolon or it will disrupt connection
-*/
+/* Mongoose Setup */
 const PORT = process.env.PORT || 6001;
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
-    // For adding initial data - do ONCE
+    /* Only to add Data upon Initialization */
     // User.insertMany(users);
     // Post.insertMany(posts);
-}).catch((error) => console.log(`${error} did not connect`));
+  })
+  .catch((error) => console.log(`${error} did not connect`));
