@@ -15,26 +15,17 @@
 - 
 
 ## Technologies Used: 
-### Front End: 
-- Dotenv
-- Formik
-- React
-- React-dropzone
-- React-redux
-- React-router
-- Redux-persist
-- Yup
-
-### Backend: 
-- Bcrypt
-- Body-parser
-- Cors
-- Dotenv
-- Express
-- Gridfs-stream
-- Helmet
-- Jsonwebtoken
-- Mongoose
-- Morgan
-- Multer
-- Multer-gridfs-storage
+| Front End: | Backend: |
+| --- | ---: |
+| - Dotenv | - Bcrypt |
+| - Formik | - Body-parser |
+| - React | - Cors |
+| - React-dropzone | - Dotenv |
+| - React-redux | - Express |
+| - React-router | - Gridfs-stream |
+| - Redux-persist | - Helmet |
+| - Yup | - Jsonwebtoken |
+| | - Mongoose |
+| | - Morgan |
+| | - Multer |
+| | - Multer-gridfs-storage |
