@@ -1,14 +1,11 @@
 import { verifyToken } from "./middleware/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { register } from "./controllers/auth.js";
-import { users, posts } from "./data/index.js";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import authRoutes from "./routes/auth.js";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
-import User from "./models/User.js";
-import Post from "./models/Post.js";
 import mongoose from "mongoose";
 import express from "express";
 import morgan from "morgan";
@@ -17,6 +14,11 @@ import dotenv from "dotenv";
 import multer from "multer";
 import cors from "cors";
 import path from "path";
+
+/* For single use of uploading dummy data */
+import { users, posts } from "./data/index.js";
+import User from "./models/User.js";
+import Post from "./models/Post.js";
 
 /** Configuration */
 const __filename = fileURLToPath(import.meta.url);
