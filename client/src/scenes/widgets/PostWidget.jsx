@@ -1,16 +1,13 @@
-import {
-  ChatBubbleOutlineOutlined,
-  FavoriteBorderOutlined,
-  FavoriteOutlined,
-  ShareOutlined,
-} from "@mui/icons-material";
+import { ChatBubbleOutlineOutlined, FavoriteBorderOutlined, FavoriteOutlined,ShareOutlined } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
+import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+import { useNavigate } from "react-router-dom";
 
 const PostWidget = ({
   postId,
@@ -29,6 +26,7 @@ const PostWidget = ({
   const loggedInUserId = useSelector((state) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
+  const navigate = useNavigate();
 
   const { palette } = useTheme();
   const main = palette.neutral.main;
@@ -97,9 +95,35 @@ const PostWidget = ({
           {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
-              <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
-                {comment}
-              </Typography>
+              <FlexBetween gap='1rem' >
+              <Box
+                  mt="0.5rem"
+                  onClick={() => {
+                    navigate(`/profile/${comment.author._id}`);
+                    navigate(0);
+                  }}
+                >
+                  <UserImage image={comment.author.picturePath} size='30px' />
+                  <Typography
+                    color={main}
+                    variant="h5"
+                    fontWeight="500"
+                    sx={{
+                      "&:hover": {
+                        color: palette.primary.light,
+                        cursor: "pointer",
+                      },
+                    }}
+                  >
+                    {comment.author.firstName} {comment.author.lastName}
+                  </Typography>
+                </Box>
+                <Box >
+                  <Typography align='right' sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
+                    {comment.text}
+                  </Typography>
+                </Box>
+              </FlexBetween>
             </Box>
           ))}
           <Divider />

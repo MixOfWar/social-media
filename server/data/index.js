@@ -14,8 +14,8 @@ const userIds = [
 export const users = [
   {
     _id: userIds[0],
-    firstName: "test",
-    lastName: "me",
+    firstName: "Test",
+    lastName: "Me",
     email: "aaaaaaa@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picturePath: "p11.png",
@@ -145,141 +145,235 @@ export const users = [
 export const posts = [
   {
     _id: new mongoose.Types.ObjectId(),
-    userId: userIds[1],
-    firstName: "Steve",
-    lastName: "Ralph",
-    location: "New York, CA",
     description: "Some really long random description",
-    picturePath: "post1.png",
-    userPicturePath: "p3.png",
-    likes: new Map([
-      [userIds[0], true],
-      [userIds[2], true],
-      [userIds[3], true],
-      [userIds[4], true],
-    ]),
-    comments: [
-      "random comment",
-      "another random comment",
-      "yet another random comment",
+    author: userIds[1],
+    likes: [
+      [userIds[0]],
+      [userIds[2]],
+      [userIds[3]],
+      [userIds[4]],
     ],
+    comments: [
+      {
+        text: "random comment",
+        author: userIds[0],
+        created: Date.now(),
+      },
+      {
+        text: "another random comment",
+        author: userIds[2],
+        created: Date.now(),
+      },
+      {
+        text: "yet another random comment",
+        author: userIds[4],
+        created: Date.now(),
+      },
+    ],
+    location: "New York, CA",
+    picturePath: "post1.png",
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    userId: userIds[3],
-    firstName: "Whatcha",
-    lastName: "Doing",
-    location: "Korea, CA",
     description:
       "Another really long random description. This one is longer than the previous one.",
+    author: userIds[3],
+    likes: [
+      [userIds[7]],
+      [userIds[4]],
+      [userIds[1]],
+      [userIds[2]],
+    ],
+    comments: [
+      {
+        text: "one more random comment",
+        author: userIds[7],
+        created: Date.now(),
+      },
+      {
+        text: "and another random comment",
+        author: userIds[5],
+        created: Date.now(),
+      },
+      {
+        text: "no more random comments",
+        author: userIds[3],
+        created: Date.now(),
+      },
+      {
+        text: "I lied, one more random comment",
+        author: userIds[1],
+        created: Date.now(),
+      },
+    ],
+    location: "Korea, CA",
     picturePath: "post2.png",
-    userPicturePath: "p6.png",
-    likes: new Map([
-      [userIds[7], true],
-      [userIds[4], true],
-      [userIds[1], true],
-      [userIds[2], true],
-    ]),
-    comments: [
-      "one more random comment",
-      "and another random comment",
-      "no more random comments",
-      "I lied, one more random comment",
-    ],
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    userId: userIds[4],
-    firstName: "Jane",
-    lastName: "Doe",
+    description:
+    "This is the last really long random description. This one is longer than the previous one.",
+    author: userIds[4],
+    likes: [
+      [userIds[1]],
+      [userIds[6]],
+      [userIds[3]],
+      [userIds[5]],
+    ],
+    comments: [
+      {
+        text: "one more random comment",
+        author: userIds[0],
+        created: Date.now(),
+      },
+      {
+        text: "I lied, one more random comment",
+        author: userIds[2],
+        created: Date.now(),
+      },
+      {
+        text: "I lied again, one more random comment",
+        author: userIds[4],
+        created: Date.now(),
+      },
+      {
+        text: "Why am I doing this?",
+        author: userIds[6],
+        created: Date.now(),
+      },
+      {
+        text: "I'm bored",
+        author: userIds[1],
+        created: Date.now(),
+      },
+    ],
     location: "Utah, CA",
-    description:
-      "This is the last really long random description. This one is longer than the previous one.",
     picturePath: "post3.png",
-    userPicturePath: "p5.png",
-    likes: new Map([
-      [userIds[1], true],
-      [userIds[6], true],
-      [userIds[3], true],
-      [userIds[5], true],
-    ]),
-    comments: [
-      "one more random comment",
-      "I lied, one more random comment",
-      "I lied again, one more random comment",
-      "Why am I doing this?",
-      "I'm bored",
-    ],
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    userId: userIds[5],
-    firstName: "Harvey",
-    lastName: "Dunn",
+    description:
+    "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
+    author: userIds[5],
+    likes: [
+      [userIds[1]],
+      [userIds[6]],
+      [userIds[3]],
+    ],
+    comments: [
+      {
+        text: "I lied again, one more random comment",
+        author: userIds[1],
+        created: Date.now(),
+      },
+      {
+        text: "Why am I doing this?",
+        author: userIds[3],
+        created: Date.now(),
+      },
+      {
+        text: "I'm bored",
+        author: userIds[5],
+        created: Date.now(),
+      },
+      {
+        text: "I'm still bored",
+        author: userIds[7],
+        created: Date.now(),
+      },
+      {
+        text: "All I want to do is play video games",
+        author: userIds[2],
+        created: Date.now(),
+      },
+      {
+        text: "I'm going to play video games",
+        author: userIds[0],
+        created: Date.now(),
+      },
+    ],
     location: "Los Angeles, CA",
-    description:
-      "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
     picturePath: "post4.png",
-    userPicturePath: "p7.png",
-    likes: new Map([
-      [userIds[1], true],
-      [userIds[6], true],
-      [userIds[3], true],
-    ]),
-    comments: [
-      "I lied again, one more random comment",
-      "Why am I doing this?",
-      "I'm bored",
-      "I'm still bored",
-      "All I want to do is play video games",
-      "I'm going to play video games",
-    ],
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    userId: userIds[6],
-    firstName: "Carly",
-    lastName: "Vowel",
+    description:
+    "Just a short description. I'm tired of typing. I'm going to play video games now.",
+    author: userIds[6],
+    likes: [
+      [userIds[1]],
+      [userIds[3]],
+      [userIds[5]],
+      [userIds[7]],
+    ],
+    comments: [
+      {
+        text: "I lied again, one more random comment",
+        author: userIds[6],
+        created: Date.now(),
+      },
+      {
+        text: "Why am I doing this?",
+        author: userIds[4],
+        created: Date.now(),
+      },
+      {
+        text: "Man I'm bored",
+        author: userIds[2],
+        created: Date.now(),
+      },
+      {
+        text: "What should I do?",
+        author: userIds[0],
+        created: Date.now(),
+      },
+      {
+        text: "I'm going to play video games",
+        author: userIds[1],
+        created: Date.now(),
+      },
+    ],
     location: "Chicago, IL",
-    description:
-      "Just a short description. I'm tired of typing. I'm going to play video games now.",
     picturePath: "post5.png",
-    userPicturePath: "p8.png",
-    likes: new Map([
-      [userIds[1], true],
-      [userIds[3], true],
-      [userIds[5], true],
-      [userIds[7], true],
-    ]),
-    comments: [
-      "I lied again, one more random comment",
-      "Why am I doing this?",
-      "Man I'm bored",
-      "What should I do?",
-      "I'm going to play video games",
-    ],
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    userId: userIds[7],
-    firstName: "Jessica",
-    lastName: "Dunn",
-    location: "Washington, DC",
     description:
-      "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
-    picturePath: "post6.png",
-    userPicturePath: "p9.png",
-    likes: new Map([
-      [userIds[1], true],
-      [userIds[2], true],
-    ]),
-
-    comments: [
-      "Can I play video games now?",
-      "No let's actually study",
-      "Never mind, I'm going to play video games",
-      "Stop it.",
-      "Michael, stop it.",
+    "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
+    author: userIds[7],
+    likes: [
+      [userIds[1]],
+      [userIds[2]],
     ],
+    
+    comments: [
+      {
+        text: "Can I play video games now?",
+        author: userIds[0],
+        created: Date.now(),
+      },
+      {
+        text: "No let's actually study",
+        author: userIds[2],
+        created: Date.now(),
+      },
+      {
+        text: "Never mind, I'm going to play video games",
+        author: userIds[4],
+        created: Date.now(),
+      },
+      {
+        text: "Stop it.",
+        author: userIds[6],
+        created: Date.now(),
+      },
+      {
+        text: "After I play some games",
+        author: userIds[3],
+        created: Date.now(),
+      },
+    ],
+    location: "Washington, DC",
+    picturePath: "post6.png",
   },
 ];

@@ -1,4 +1,4 @@
-import { Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import WidgetWrapper from "components/WidgetWrapper";
 import FlexBetween from "components/FlexBetween";
 
@@ -16,13 +16,15 @@ const AdvertWidget = () => {
         </Typography>
         <Typography color={medium}>Create Ad</Typography>
       </FlexBetween>
-      <img
-        width="100%"
-        height="auto"
-        alt="advert"
-        src="http://localhost:3001/assets/info4.jpeg"
-        style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
-      />
+      <Box>
+        <img
+          width="100%"
+          height="auto"
+          alt="advert"
+          src="http://localhost:3001/assets/info4.png"
+          style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
+        />
+      </Box>
       <FlexBetween>
         <Typography color={main}>MikaCosmetics</Typography>
         <Typography color={medium}>mikacosmetics.com</Typography>
